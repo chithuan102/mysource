@@ -1,0 +1,75 @@
+﻿@model MVC.Models.Student
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Student</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Major.majorName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Major.majorName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.username)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.username)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.password)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.password)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.stuName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.stuName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.stuPhone)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.stuPhone)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.stuEmail)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.stuEmail)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.stuAddress)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.stuAddress)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.stuId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

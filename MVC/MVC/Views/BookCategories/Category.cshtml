@@ -1,0 +1,79 @@
+﻿@using MVC.Models
+@model List<Book>
+@{
+    ViewBag.Title = "Category";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+<style>
+    #category{
+        display: none;
+    }
+</style>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<link href="~/Content/UserCss.css" rel="stylesheet" />
+@*<h2>Category</h2>*@
+<div class="row">
+    <div class="col-sm-4">
+        <div class="col-12 col-sm-12">
+            <div class="card bg-light mb-5">
+                <div class="card-header bg-primary text-white text-uppercase"><i class="fa fa-list"></i> Categories</div>
+                <ul class="list-group category_block">
+                    @foreach (var item in (List<BookCategory>)ViewBag.lstCategory)
+                    {
+                        <a href="@Url.Action("Category", new {@catId=item.catId })"> @item.catName</a>
+                    }
+                </ul>
+            </div>
+        </div>
+        @*<div class="card bg-light mb-3">
+                <div class="card-header bg-success text-white text-uppercase">Last product</div>
+                <div class="card-body">
+
+                    <img class="img-fluid" src="https://dummyimage.com/600x400/55595c/fff" />
+                    <h5 class="card-title">Product title</h5>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    <p class="bloc_left_price">99.00 $</p>
+                </div>
+            </div>*@
+    </div>
+    @*san pham*@
+    
+    <div class="col-sm-8">
+        <p>@ViewBag.Sach</p> 
+        <div class="row">
+            @foreach (var item in Model)
+            {
+
+                <div class="col-12 col-md-6 col-lg-4">
+                    <div class="card">
+                        <a href="@Url.Action("BookDetail", "Books", new { @ISBN=item.ISBN })">
+                            <img class="card-img-top" src="@Url.Content(@item.Image)" alt="Card image cap">
+                        </a>
+                        <div class="card-body">
+
+                            @if (item.Title.Length < 20)
+                {
+                                <div class="card-title" title="@item.Title">@item.Title.</div>
+                            }
+                            else
+                            {
+                                <div class="card-title" title="@item.Title"> @item.Title.Substring(0, 20) ...</div>
+                            }
+                            <p>Author: @item.Author</p>
+                            <div class="row">
+
+                                <div class="col">
+                                    <a href="@Url.Action("BookDetail", "Books", new { @ISBN=item.ISBN })" class="btn btn-success btn-block">View</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            }
+        </div>
+    </div>
+</div>
+

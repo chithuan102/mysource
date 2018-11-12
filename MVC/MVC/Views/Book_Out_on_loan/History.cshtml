@@ -1,0 +1,133 @@
+﻿@model IEnumerable<MVC.Models.Book_Out_on_loan>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+<style>
+    #category {
+        display: none;
+    }
+</style>
+
+<div class="row" style="margin-left:20px">
+    <table class="table" id="table_id" >
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Book.Title)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Student.username)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.date_issue)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.date_due_for_return)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.date_return)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.status)
+                </th>
+                <th>Date late</th>
+                <th>Fines paid</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Book.Title)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Student.username)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.date_issue)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.date_due_for_return)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.date_return)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.status)
+                    </td>
+                    <td>
+                        @{
+                            if (item.date_return != null)
+                            {
+                                DateTime checkOutDate = Convert.ToDateTime(item.date_return);
+                                DateTime dueDate = Convert.ToDateTime(item.date_due_for_return);
+                                double expiredDate = (checkOutDate.Date - dueDate.Date).TotalDays;
+                                if (expiredDate > 0)
+                                {
+                                    @Html.Label(expiredDate.ToString() + " days");
+                    }
+                    else
+                    {
+                                    @Html.Label("None");
+                    }
+                }
+                else
+                {
+                    DateTime now = DateTime.Now;
+                    DateTime dueDate = Convert.ToDateTime(item.date_due_for_return);
+                    double expiredDate = (now.Date - dueDate.Date).TotalDays;
+                    if (expiredDate > 0)
+                    {
+                                    @Html.Label(expiredDate.ToString() + " days");
+                    }
+                    else
+                    {
+                                    @Html.Label("None");
+                    }
+                }
+                        }
+                    </td>
+                    <td>
+                        @{
+                            if (item.date_return != null)
+                            {
+                                DateTime checkOutDate = Convert.ToDateTime(item.date_return);
+                                DateTime dueDate = Convert.ToDateTime(item.date_due_for_return);
+                                double expiredDate = (checkOutDate.Date - dueDate.Date).TotalDays;
+                                if (expiredDate > 0)
+                                {
+                                    @Html.Label((expiredDate * 10).ToString() + " cent");
+                    }
+                    else
+                    {
+                                    @Html.Label("None");
+                    }
+                }
+                else
+                {
+                    DateTime now = DateTime.Now;
+                    DateTime dueDate = Convert.ToDateTime(item.date_due_for_return);
+                    double expiredDate = (now.Date - dueDate.Date).TotalDays;
+                    if (expiredDate > 0)
+                    {
+                                    @Html.Label((expiredDate * 10).ToString() + " cent");
+                    }
+                    else
+                    {
+                                    @Html.Label("None");
+                    }
+                }
+                        }
+                    </td>
+
+
+
+                </tr>
+                            }
+        </tbody>
+
+    </table>
+</div>

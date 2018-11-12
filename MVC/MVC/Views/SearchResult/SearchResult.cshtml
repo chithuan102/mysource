@@ -1,0 +1,60 @@
+﻿@using PagedList.Mvc;
+@using PagedList;
+@model IPagedList<MVC.Models.Book>
+@{
+    ViewBag.Title = "SearchResult";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+<style>
+    #catePartial {
+        display: none;
+    }
+    #category{
+        display: none;
+    }
+</style>
+<h2>Search Result</h2>
+<div>@ViewBag.ThongBao</div>
+<link href="~/Content/StyleSheet1.css" rel="stylesheet" />
+<link href="~/Content/UserCss.css" rel="stylesheet" />
+<hr />
+<div class="container">
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            <div class="col-12 col-md-6 col-lg-4">
+                <div class="card">
+                    <a href="@Url.Action("BookDetail", "Books", new { @ISBN=item.ISBN })">
+                        <img class="card-img-top" src="@Url.Content(@item.Image)" alt="Card image cap">
+                    </a>
+                    <div class="card-body">
+
+                        @if (item.Title.Length < 20)
+                {
+                            <div class="card-title" title="@item.Title">@item.Title.</div>
+                        }
+                        else
+                        {
+                            <div class="card-title" title="@item.Title"> @item.Title.Substring(0, 20) ...</div>
+                        }
+                        <p>Author: @item.Author</p>
+                        <div class="row">
+
+                            <div class="col">
+                                <a href="@Url.Action("BookDetail", "Books", new { @ISBN=item.ISBN })" class="btn btn-success btn-block">View</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        }
+    </div>
+</div>
+
+<div style="clear:both"></div>
+@* Tạo link liên kết các trang*@
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)/ @Model.PageCount
+<div class="MenuTrang">
+    @Html.PagedListPager(Model, page => Url.Action("SearchResult", new { page = page, @sTuKhoa = ViewBag.TuKhoa}))
+</div>

@@ -1,0 +1,15 @@
+﻿@using MVC.Models;
+@model List<BookCategory>
+    <div id="catePartial">
+    <div class="col-12 col-sm-12">
+        <div class="card bg-light mb-5">
+            <div class="card-header bg-primary text-white text-uppercase"><i class="fa fa-list"></i> Categories</div>
+            <ul class="list-group category_block">
+                @foreach (var item in Model)
+            {
+                    <a href="@Url.Action("Category", new {@catId=item.catId })"> @item.catName</a>
+                }
+            </ul>
+        </div>
+    </div>
+</div>

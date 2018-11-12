@@ -1,0 +1,70 @@
+﻿@model IEnumerable<MVC.Models.vBookDetail>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.book.Title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.student.username)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.stuName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.date_issue)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.date_due_for_return)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.date_return)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.book.Title)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.student.username)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.stuName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Title)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.date_issue)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.date_due_for_return)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.date_return)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,75 @@
+﻿@model IEnumerable<MVC.Models.Student>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Student Management</h2>
+<hr />
+@*<p>
+    @Html.ActionLink("Create New", "Create")
+</p>*@
+<a class="btn btn-success" style="margin-bottom:10px" href="@Url.Action("Create","Students")"><i class="fa fa-plus"></i> Add New</a>
+<table class="table" id="table_id">
+    <thead>
+        <tr>
+            <th>
+               Student Name
+            </th>
+            <th>
+                Major
+            </th>
+            <th>
+                Phone number
+            </th>
+            <th>
+               Email
+            </th>
+            <th>
+               Address
+            </th>
+            
+            <th>
+               Username
+            </th>
+            <th>
+               Password
+            </th>
+            <th></th>
+        </tr>
+        </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.stuName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Major.majorName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.stuPhone)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.stuEmail)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.stuAddress)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.username)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.password)
+                </td>
+                <td width="300">
+                    @Html.ActionLink("Edit", "Edit", new { id = item.stuId }, new { @class = "btn btn-info" })
+                    @Html.ActionLink("Details", "Details", new { id = item.stuId }, new { @class = "btn btn-warning" })
+                    @Html.ActionLink("Delete", "Delete", new { id = item.stuId }, new { onclick = "return confirm('Are you sure you wish to delete this record?')", @class = "btn btn-danger" })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

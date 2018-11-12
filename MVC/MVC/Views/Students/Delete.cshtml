@@ -1,0 +1,81 @@
+﻿@model MVC.Models.Student
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Student</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Major.majorName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Major.majorName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.username)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.username)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.password)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.password)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.stuName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.stuName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.stuPhone)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.stuPhone)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.stuEmail)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.stuEmail)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.stuAddress)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.stuAddress)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

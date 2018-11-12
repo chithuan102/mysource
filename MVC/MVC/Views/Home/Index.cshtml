@@ -1,0 +1,50 @@
+﻿@using MVC.Models;
+@using PagedList.Mvc;
+@model PagedList.IPagedList<Book>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+<link href="~/Content/StyleSheet1.css" rel="stylesheet" />
+<link href="~/Content/UserCss.css" rel="stylesheet" />
+<h2 style="margin-left:2%;font-weight:normal;color:black">Book release</h2>
+<hr />
+    <div class="row">
+        @foreach (var item in Model)
+        {
+
+            <div class="col-12 col-md-6 col-lg-4">
+                <div class="card">
+                    <a href="@Url.Action("BookDetail", "Books", new { @ISBN=item.ISBN })">
+                        <img class="card-img-top" src="@Url.Content(@item.Image)" alt="Card image cap">
+                    </a>
+                    <div class="card-body">
+
+                        @if (item.Title.Length < 20)
+                {
+                            <div class="card-title" title="@item.Title">@item.Title.</div>
+                        }
+                        else
+                        {
+                            <div class="card-title" title="@item.Title"> @item.Title.Substring(0, 20) ...</div>
+                        }
+                        <p>Author: @item.Author</p>
+                        <div class="row">
+ 
+                            <div class="col">
+                                <a href="@Url.Action("BookDetail", "Books", new { @ISBN=item.ISBN })" class="btn btn-success btn-block">View</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        }
+    </div>
+
+
+<div style="clear:both"></div>
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)/ @Model.PageCount
+<div>
+    @Html.PagedListPager(Model, page => Url.Action("Index", new { page = page }))
+</div>

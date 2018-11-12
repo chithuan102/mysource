@@ -1,0 +1,45 @@
+﻿@model IEnumerable<MVC.Models.BookCategory>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Category Management</h2>
+<hr/>
+@*<p>
+    @Html.ActionLink("Create New", "Create")
+</p>*@
+<a class="btn btn-success" style="margin-bottom:10px" href="@Url.Action("Create","BookCategories")"><i class="fa fa-plus"></i> Add New</a>
+<table class="table" id="table_id">
+    <thead>
+        <tr>
+            <th>
+               Category ID
+            </th>
+            <th>
+                Category Name
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.catId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.catName)
+                </td>
+                <td width="300">
+                    @Html.ActionLink("Edit", "Edit", new { id = item.catId }, new { @class = "btn btn-info" })
+                    @Html.ActionLink("Details", "Details", new { id = item.catId }, new { @class = "btn btn-warning" })
+                    @Html.ActionLink("Delete", "Delete", new { id = item.catId }, new { onclick = "return confirm('Are you sure you wish to delete this record?')", @class = "btn btn-danger" })
+                </td>
+            </tr>
+        }
+    </tbody>
+
+</table>
